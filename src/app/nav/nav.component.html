@@ -1,0 +1,91 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar color="primary">Menu</mat-toolbar>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false"
+                           [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Menu
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list role="list">
+          <mat-list-item role="listitem">Discovers</mat-list-item>
+          <mat-list-item role="listitem">Songs</mat-list-item>
+          <mat-list-item role="listitem">Albums</mat-list-item>
+          <mat-list-item role="listitem">Artists</mat-list-item>
+          <mat-list-item role="listitem">Liked</mat-list-item>
+          <mat-list-item role="listitem">Local Files</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false"
+                           [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Sub Menu
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list role="list">
+          <mat-list-item role="listitem">Privaite Music</mat-list-item>
+          <mat-list-item role="listitem">Watch Later</mat-list-item>
+          <mat-list-item role="listitem">Favorite Songs</mat-list-item>
+          <mat-list-item role="listitem">Support</mat-list-item>
+          <mat-list-item role="listitem">Liked</mat-list-item>
+          <mat-list-item role="listitem">Local Files</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false"
+                            [expanded]="true"
+                           >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Playlists
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list role="list">
+          <mat-list-item role="listitem">50 Top Hits</mat-list-item>
+          <mat-list-item role="listitem">Classic</mat-list-item>
+          <mat-list-item role="listitem">Rap 2018</mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+<!--     <mat-nav-list>
+      <a mat-list-item routerLink="">Home</a>
+      <a mat-list-item routerLink="albums">Albums</a>
+    </mat-nav-list> -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>FakeMusicAdmin</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
