@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AlbumComponent } from './home/album/album.component';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
 const appRoute : Routes = [
 	{path: '', component: HomeComponent},
 	{path: 'albums', component: AlbumComponent},

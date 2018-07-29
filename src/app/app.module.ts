@@ -2,18 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // add this
 import { HttpClientModule } from '@angular/common/http';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {LayoutModule} from '@angular/cdk/layout';
-import { MatCardModule, 
-          MatIconModule, 
-          MatToolbarModule, 
-          MatButtonModule, 
-          MatFormFieldModule, 
-          MatInputModule, 
-          MatSidenavModule, 
-          MatListModule,
-          MatGridListModule,
-          MatExpansionModule } from '@angular/material';
 
 import { AlbumService } from './album.service';
 
@@ -25,6 +13,7 @@ import { EditComponent } from './home/album/edit/edit.component';
 import { DeleteComponent } from './home/album/delete/delete.component';
 import { NavComponent } from './nav/nav.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -35,24 +24,13 @@ import { AppRoutingModule } from './/app-routing.module';
     EditComponent,
     DeleteComponent,
     NavComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    LayoutModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSidenavModule,
-    MatListModule,
-    AppRoutingModule,
-    MatGridListModule,
-    MatExpansionModule
+    AppRoutingModule
   ],
   providers: [AlbumService],
   bootstrap: [AppComponent]

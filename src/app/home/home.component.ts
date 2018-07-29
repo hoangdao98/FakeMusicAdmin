@@ -18,7 +18,7 @@ private apiURL = "http://localhost:8000/api/albums";
 
 private accessToken = [];
 
-  constructor(private albumService: AlbumService) { 
+  constructor(private albumService: AlbumService) {
   }
 
   ngOnInit() {

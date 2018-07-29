@@ -1,0 +1,38 @@
+$m : NeueM;
+$r : NeueR;
+$b : NeueB;
+
+// Color
+$c-default: #F8FEFD;
+$c-blue: #3335e8;
+$c-basic: #6a7185;
+$c-purple: #273c73;
+$c-purlight: #88788D;
+$c-purulight: #9AA6BD;
+$c-pink: #EADEDD;
+$c-orange: #DB8C74;
+$c-black: #0c0f38;
+
+// font-size
+$f-sm : 13px;
+$f-md : 16px;
+$f-lg : 18px;
+$f-max : 20px;
+
+
+// Settings
+%no-3b{
+  background: none;
+  border: none;
+  border-radius: none;
+}
+
+%i{
+  font-size: $f-max;
+  padding-right: 15px;
+  vertical-align: text-top;
+  color: $c-blue;
+  cursor: pointer;
+}
+
+//

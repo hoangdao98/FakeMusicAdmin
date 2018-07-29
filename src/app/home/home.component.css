@@ -1,16 +1,1 @@
-mat-grid-tile {
-  background: lightblue;
-}
-.example-card {
-  max-width: 200px;
-}
-p{
-	white-space: nowrap; 
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
+.home{width:100%;box-shadow:5px 0 5px -5px #88788D}

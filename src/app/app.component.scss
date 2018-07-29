@@ -1,0 +1,71 @@
+@import '../styles/variables';
+
+.nav-flex{
+  width: 260px;
+  background: $c-default;
+  display: block;
+  height: 100vh;
+}
+
+.home-flex{
+  width: calc(100% - 260px);
+  height: 100vh;
+  padding: 20px 30px;
+  box-shadow: -10px 0 90px -30px $c-purulight;
+  position: relative;
+  z-index: 99;
+  .search{
+    .form-inline{
+      position: relative;
+      vertical-align: middle;
+      .form-control{
+        &:focus{
+          box-shadow: none;
+        }
+      }
+      i{
+        position: absolute;
+        padding: 0 15px;
+        @extend %i;
+        font-size: $f-sm;
+        margin-top: 1px;
+      }
+      .right{
+        position: absolute;
+        right: 0 !important;
+        padding: 15px;
+        @extend %i;
+        font-size: $f-sm;
+        margin-top: 1px;
+      }
+      input{
+        padding: 0 15px 0 40px;
+        font-size: $f-sm;
+        width: 350px;
+        font-weight: 600;
+        color: $c-basic;
+      }
+    }
+    .nav-horizontal{
+      .nav-item{
+        padding: 0 15px;
+        &:last-child{
+          padding-right: 0px;
+        }
+        .nav-link{
+          cursor: pointer;
+          color: $c-purple;
+          font-weight: bold;
+          font-size: $f-sm;
+          &:last-child{
+            padding-right: 0px;
+          }
+          i{
+            @extend %i;
+            font-size: $f-md;
+          }
+        }
+      }
+    }
+  }
+}

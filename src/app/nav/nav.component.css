@@ -1,12 +1,1 @@
-.sidenav-container {
-  height: 100%;
-}
-
-.sidenav {
-  width: 260px;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  top: 0;
-}
+.nav .card,.nav .card .card-header,.nav .card .card-body .list-group-item{background:none;border:none;border-radius:none}.nav .card .card-header i,.nav .card .card-body .list-group-item i{font-size:20px;padding-right:15px;vertical-align:text-top;color:#3335e8;cursor:pointer}.nav{width:100%;background:#F8FEFD;display:block;height:100%}.nav .user-panel{padding:15px 0;border-bottom:1px solid #ebe9e8;margin-bottom:10px}.nav .user-panel .card-header{display:flex;flex-wrap:wrap;position:relative}.nav .user-panel .card-header img{width:50px;height:50px;border-radius:50%;margin-right:15px}.nav .user-panel .card-header h5{color:#0c0f38 !important;font-size:20px !important}.nav .user-panel .card-header button{background:none;border:1px solid #3335e8;color:#6a7185;font-size:11px;padding:0 20px;position:absolute;bottom:10%;left:43%;font-weight:600}.nav .nav-panel{overflow-x:auto}.nav .card .card-header{padding:10px 15px}.nav .card .card-header h5{margin-bottom:0;color:#9AA6BD;font-size:16px;cursor:pointer}.nav .card .card-header i{font-size:16px !important}.nav .card .card-body{padding:10px 15px}.nav .card .card-body .list-group-item{cursor:pointer;color:#273c73;font-weight:bold;font-size:13px;padding:10px 15px}

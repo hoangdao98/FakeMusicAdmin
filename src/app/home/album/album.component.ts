@@ -11,6 +11,7 @@ import { AlbumService } from '../../album.service';
 export class AlbumComponent implements OnInit {
 	private tracks;
 	private album;
+  p = 1;
 	panelOpenState = false;
   constructor(private router: ActivatedRoute, private albumService: AlbumService) { }
 
@@ -20,8 +21,17 @@ export class AlbumComponent implements OnInit {
   		data => this.tracks = data
   	);
   	this.albumService.getAlbum(id).subscribe(
-  		(data:any) => {this.album = data.data}
+  		(data:any) => {
+        this.album = data.data
+      }
   	);
   }
-
+// loading(){
+//   this.p++;
+//   getAlbum(id, this.p){
+//     data.data
+//      let array = [...this.album, ...data.data];
+//      this.album = array;
+//   }
+// }
 }
