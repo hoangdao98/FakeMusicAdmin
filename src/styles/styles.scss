@@ -13,3 +13,47 @@
 	font-family: NeueB;
 	src: url('../assets/fonts/NHaasGroteskB.ttf');
 }
+
+.m-20-30{
+	margin: 20px 30px !important;
+}
+
+// .featured-albums_content{
+// 	.owl-nav{
+// 		background: #fff;
+// 		position: absolute;
+// 		top: -70px;
+// 		right: 30px;
+// 		.disabled{
+// 				span{
+// 					color: $c-basic;
+// 				}
+// 		}
+// 		button{
+// 			@extend %no-3b;
+
+// 			&:focus {
+// 				box-shadow: none !important;
+// 				outline: none;
+// 				border: none;
+// 			}
+
+// 			span{
+// 				@extend %i;
+// 				font-size: 23px;
+// 			}
+// 		}
+// 		.owl-prev{
+// 			span{
+// 				padding-left: 30px;
+// 				padding-right: 10px;
+// 			}
+// 		}
+// 		.owl-next{
+// 			span{
+// 				padding-right: 0;
+// 				padding-left: 10px;
+// 			}
+// 		}
+// 	}
+// }

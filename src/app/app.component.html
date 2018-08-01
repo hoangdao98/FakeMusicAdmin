@@ -3,7 +3,7 @@
     <app-nav></app-nav>
   </div>
   <div class="home-flex">
-    <nav class="navbar search">
+    <nav class="navbar search px-0">
       <form class="form-inline">
         <i class="fas fa-search"></i>
         <input class="form-control" type="search" placeholder="Search your favorite music" aria-label="Search">
@@ -24,10 +24,13 @@
           <a class="nav-link" href="#">Radio</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="far fa-bell"></i></a>
+          <a class="nav-link" href="#"><i class="far fa-bell pr-0"></i></a>
         </li>
       </ul>
     </nav>
-    <app-home></app-home>
+    <div class="mt-5 scroll-auto home-content">
+      <router-outlet></router-outlet>
+    </div>
+
   </div>
 </div>

@@ -64,6 +64,7 @@
         font-weight: bold;
         font-size: $f-sm;
         padding: 10px 15px;
+        outline: none;
         i{
           @extend %i;
         }

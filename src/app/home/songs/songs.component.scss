@@ -1,0 +1,185 @@
+@import '../../../styles/variables';
+
+.songs {
+  position: relative;
+
+  .songs-header {
+    position: relative;
+    height: 1px;
+
+    &:before {
+      content: "Songs";
+      padding-right: 30px;
+      font-size: 24px;
+      color: $c-purple;
+      position: absolute;
+      top: -18px;
+      font-weight: 600;
+    }
+
+    .btn-position {
+      position: absolute;
+      left: 15%;
+      top: -12px;
+
+      .active {
+        border-bottom: 2px solid $c-grey;
+        color: $c-purple;
+        margin-top: 2px;
+      }
+
+      button {
+        @extend %no-3b;
+        margin: 0 15px;
+        font-size: $f-sm;
+        color: $c-gray;
+        font-weight: 600;
+        outline: none;
+        border-radius: 0;
+        padding: 2px;
+
+        &:last-child {
+          padding-right: 0;
+          margin-right: 0;
+        }
+
+        &:hover {
+          border-bottom: 2px solid $c-grey;
+          color: $c-purple;
+          margin-top: 2px;
+        }
+      }
+    }
+  }
+
+  .songs-body {
+    display: flex;
+
+    .table {
+      td {
+        border-top: none;
+        font-size: 12px !important;
+        color: $c-gray;
+        font-weight: 100;
+      }
+
+      thead {
+        tr {
+          td {
+            font-size: 14px !important;
+            border-bottom: 1px solid $c-gray;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          cursor: pointer;
+
+          &:hover {
+            background: #f2f2f2;
+            box-shadow: 0.5px 0.5px 5px #eee;
+
+            td {
+              color: #000;
+
+              i {
+                color: #f5127f;
+                font-size: $f-lg !important;
+              }
+
+              span {
+                &:hover{
+                  color: #000 !important;
+                }
+              }
+            }
+          }
+
+          td {
+            padding-top: 20px;
+            padding-bottom: 10px;
+            font-size: 12px;
+
+            img {
+              width: 60px;
+              display: inline-block;
+              margin: 0 10px;
+            }
+
+            &:nth-child(1) {
+              width: 20%;
+            }
+
+            &:nth-child(2) {
+              h6 {
+                color: #000;
+                padding: 0;
+                font-size: 14px;
+                font-weight: 100;
+              }
+
+              span {
+                color: $c-gray !important;
+              }
+            }
+
+            i {
+              font-size: $f-lg !important;
+            }
+          }
+        }
+
+        .active {
+          background: #fff;
+
+          td {
+            color: $c-purple;
+
+            i {
+              color: #f5127f;
+              font-size: $f-sm;
+            }
+          }
+        }
+      }
+    }
+
+    .card {
+      @extend %no-3b;
+      cursor: pointer;
+      width: 20%;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-bottom: 20px;
+
+      .card-img-top {
+        border: none;
+        border-radius: 0;
+      }
+
+      .card-body {
+        color: $c-purple;
+        padding: 15px 0;
+
+        .card-title {
+          font-size: $f-lg;
+          margin-bottom: 5px;
+        }
+
+        .card-text {
+          font-size: $f-sm;
+          color: $c-basic;
+          font-weight: 600;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      // border-radius: 15px;
+      box-shadow: 0 15px 30px -15px rgba(0,0,0,0.5);
+    }
+  }
+}

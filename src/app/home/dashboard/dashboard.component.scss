@@ -1,0 +1,82 @@
+@import '../../../styles/variables';
+
+.featured {
+  position: relative;
+  .featured-albums {
+    border-top: 1px dashed $c-gray;
+    position: relative;
+
+    &:before {
+      content: "Featured Albums";
+      padding-right: 30px;
+      font-size: $f-max;
+      color: $c-purple;
+      background: #fff;
+      position: absolute;
+      top: -18px;
+      font-family: $m;
+    }
+
+    .button-p {
+      position: absolute;
+      right: 0;
+      top: -15px;
+      background: #fff;
+
+      button {
+        @extend %no-3b;
+
+        &:focus {
+          box-shadow: none;
+        }
+
+        &:first-child {
+          padding-left: 30px;
+          padding-right: 5px;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+
+        i {
+          @extend %i;
+          font-size: $f-sm;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .featured-albums_content {
+    	margin-left: 30px;
+
+    	.card {
+    		@extend %no-3b;
+    		.card-img-top{
+    			border: none;
+    			border-radius: 0;
+    		}
+
+    		.card-body {
+    			color: $c-purple;
+    			padding: 15px 0;
+    			.card-title{
+    				font-size: $f-lg;
+    				margin-bottom: 5px;
+    			}
+    			.card-text{
+    				font-size: $f-sm;
+    				color: $c-basic;
+    				font-weight: 600;
+    			}
+    		}
+    	}
+    	img {
+    		width: 180px;
+    		display: block;
+    		// border-radius: 15px;
+    		box-shadow: 0 15px 30px -15px rgba(0,0,0,0.5);
+    	}
+}
+}

@@ -1,3 +1,18 @@
-<p>
-  dashboard works!
-</p>
+<div class="featured">
+  <div class="featured-albums">
+    <!-- <div class="button-p ">
+        <button class="btn owl-prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="btn owl-next"><i class="fas fa-chevron-right"></i></button>
+    </div> -->
+  </div>
+  <div class="featured-albums_content mt-5" *ngIf="buffer != undefined && buffer.length > 0">
+    <owl-carousel
+        [options]="{items: 3, dots: false, navigation: false, nav:true}"
+        [items]="item"
+        [carouselClasses]="['owl-theme', 'owl-carousel', 'sliding']">
+        <div class="item" *ngFor="let album of buffer">
+          {{album.name}}
+        </div>
+    </owl-carousel>
+  </div>
+</div>

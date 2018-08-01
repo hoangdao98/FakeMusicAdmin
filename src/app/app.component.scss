@@ -5,20 +5,24 @@
   background: $c-default;
   display: block;
   height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .home-flex{
   width: calc(100% - 260px);
   height: 100vh;
-  padding: 20px 30px;
   box-shadow: -10px 0 90px -30px $c-purulight;
   position: relative;
   z-index: 99;
+  padding: 20px 30px;
+  // overflow: auto;
   .search{
     .form-inline{
       position: relative;
       vertical-align: middle;
       .form-control{
+        border-radius: 0;
         &:focus{
           box-shadow: none;
         }

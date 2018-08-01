@@ -15,7 +15,7 @@ export class AlbumService {
 	 private newAlbum = { };
 	 private tracks;
 	 private oAuthURL = "http://localhost:8000/oauth/token";
-	 private apiURL = "http://localhost:8000/api/albums";
+	 private apiURL = "http://localhost:8000/api/albums/?page=";
 	 private accessToken = [];
 	 private headers = new HttpHeaders();
 	 private options = { headers: this.headers };
@@ -36,8 +36,8 @@ export class AlbumService {
   		console.log(this.headers);
   	 }
 
-	getAlbums() {
-	   	return this.http.get<Album[]>(this.apiURL, this.options ).pipe(
+	getAlbums(page) : Observable<any>{
+	   	return this.http.get<Album[]>(this.apiURL + page, this.options ).pipe(
 	   		tap((res:any) => {console.log(res.data)}),
 	   		catchError(error => of([]))
 	   	);
@@ -64,5 +64,5 @@ export class AlbumService {
 		return this.http.get(this.apiURL+'/'+id);
 	}
 
-  
+
 }
