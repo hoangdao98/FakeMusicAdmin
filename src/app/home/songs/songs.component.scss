@@ -1,14 +1,226 @@
 @import '../../../styles/variables';
 
+.songs-controls{
+  position: relative;
+  input{
+    font-size: 11px;
+    height: 28px;
+    outline: none;
+  }
+}
+
+.btn-position {
+  position: absolute;
+  right: 0;
+  // left: 15%;
+  // top: -12px;
+
+  .active {
+    border-bottom: 1px solid $c-grey;
+    color: $c-purple;
+    margin-top: 2px;
+  }
+
+  button {
+    @extend %no-3b;
+    margin: 0 15px;
+    font-size: $f-sm;
+    color: #000;
+    font-weight: 100;
+    outline: none;
+    border-radius: 0;
+    padding: 2px;
+    outline: none;
+
+    &:last-child {
+      padding-right: 0;
+      margin-right: 0;
+    }
+
+    &:hover {
+      border-bottom: 1px solid $c-grey;
+      color: $c-purple;
+      margin-top: 2px;
+    }
+  }
+}
+
 .songs {
   position: relative;
 
   .songs-header {
+    // position: relative;
+    // height: 1px;
+
+    &:before {
+      content: "";
+      padding-right: 30px;
+      font-size: 24px;
+      color: $c-purple;
+      position: absolute;
+      top: -18px;
+      font-weight: 600;
+    }
+  }
+
+  .songs-body {
+    display: flex;
+
+    .table {
+      td {
+        border-top: none;
+        font-size: 12px !important;
+        color: $c-gray;
+        font-weight: 100;
+        letter-spacing: 1px;
+      }
+
+      thead {
+        tr {
+          td {
+            font-size: 14px !important;
+            border-bottom: 1px solid $c-gray;
+            &:last-child{
+              text-align: right;
+            }
+          }
+        }
+      }
+
+      tbody {
+        position: relative;
+        tr {
+          cursor: pointer;
+          &.selected{
+            background: #f2f2f2;
+            box-shadow: 0.5px 0.5px 5px #eee;
+          }
+          &:hover {
+            background: #f2f2f2;
+            box-shadow: 0.5px 0.5px 5px #eee;
+
+            td {
+              color: #000;
+
+              span {
+                &:hover{
+                  color: #000 !important;
+                }
+              }
+              &:last-child{
+                strong{
+                  color: #999;
+                }
+                span{
+                  display: none;
+                }
+                .table-btn{
+                  display: block;
+                  button{
+                    &:hover{
+                      border: 1px solid #ccc;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          td {
+            padding-top: 10px;
+            font-size: 12px;
+            vertical-align: middle;
+
+            img {
+              width: 50px;
+              display: inline-block;
+              margin: 0 10px 0 25px;
+            }
+
+            &:nth-child(1) {
+              width: 20%;
+              font-size: 16px !important;
+              color: #000;
+            }
+
+            &:nth-child(2) {
+              h6 {
+                color: #000;
+                padding: 0;
+                font-size: 14px;
+                font-weight: 100;
+                margin: 0;
+              }
+
+              span {
+                color: $c-gray !important;
+              }
+            }
+
+            &:last-child{
+              text-align: right;
+              strong{
+                color: #999;
+              }
+              .table-btn{
+                display: none;
+                button{
+                  background: transparent;
+                  border: 1px solid #e5e5e5;
+                  margin-right: 5px;
+                  outline: 0;
+                  font-size: 11px;
+                  border-radius: 3px;
+                  cursor: pointer;
+                }
+              }
+            }
+          }
+        }
+
+        .active {
+          background: #fff;
+
+          td {
+            color: $c-purple;
+
+            i {
+              color: #f5127f;
+              font-size: $f-sm;
+            }
+          }
+        }
+      }
+
+      .load{
+        img{
+          background: transparent;
+          width: 100px;
+          height: 100px;
+          box-shadow: none !important;
+          top: 50%;
+          left: 40%;
+          opacity: 1;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+      display: block;
+      // border-radius: 15px;
+      box-shadow: 0 15px 30px -15px rgba(0,0,0,0.5);
+    }
+  }
+}
+
+.song-detail{
+  .song-detail-header {
     position: relative;
     height: 1px;
 
     &:before {
-      content: "Songs";
+      content: "";
       padding-right: 30px;
       font-size: 24px;
       color: $c-purple;
@@ -52,7 +264,7 @@
     }
   }
 
-  .songs-body {
+  .song-detail-body {
     display: flex;
 
     .table {
@@ -61,6 +273,7 @@
         font-size: 12px !important;
         color: $c-gray;
         font-weight: 100;
+        letter-spacing: 1px;
       }
 
       thead {
@@ -68,109 +281,63 @@
           td {
             font-size: 14px !important;
             border-bottom: 1px solid $c-gray;
+            &:last-child{
+              text-align: right;
+            }
           }
         }
       }
 
       tbody {
         tr {
-          cursor: pointer;
-
-          &:hover {
-            background: #f2f2f2;
-            box-shadow: 0.5px 0.5px 5px #eee;
-
-            td {
-              color: #000;
-
-              i {
-                color: #f5127f;
-                font-size: $f-lg !important;
+          td {
+            padding-top: 10px;
+            font-size: 12px;
+            vertical-align: middle;
+            cursor: pointer;
+          }
+          &:nth-child(2){
+            td{
+              position: relative;
+              height: 210px;
+              background: #e5e5e5;
+              img{
+                position: absolute;
+                width: 245px;
+                left: 40px;
+                top: -15px;
               }
-
-              span {
+            }
+          }
+          &:nth-child(5){
+            td{
+              h6{
+                font-weight: 100;
+                color: #333;
+                font-size: $f-max;
+              }
+              span{
                 &:hover{
-                  color: #000 !important;
+                  color: #333;
                 }
               }
             }
           }
-
-          td {
-            padding-top: 20px;
-            padding-bottom: 10px;
-            font-size: 12px;
-
-            img {
-              width: 60px;
-              display: inline-block;
-              margin: 0 10px;
-            }
-
-            &:nth-child(1) {
-              width: 20%;
-            }
-
-            &:nth-child(2) {
-              h6 {
-                color: #000;
-                padding: 0;
-                font-size: 14px;
-                font-weight: 100;
+          &:nth-child(1n+6){
+            td{
+              padding-top: 0 !important;
+              &:first-child{
+                width: 20%;
+                color : #333;
+                vertical-align: top;
               }
-
-              span {
-                color: $c-gray !important;
+              &:last-child{
+                &:hover{
+                  color: #333;
+                }
               }
             }
-
-            i {
-              font-size: $f-lg !important;
-            }
           }
-        }
-
-        .active {
-          background: #fff;
-
-          td {
-            color: $c-purple;
-
-            i {
-              color: #f5127f;
-              font-size: $f-sm;
-            }
-          }
-        }
-      }
-    }
-
-    .card {
-      @extend %no-3b;
-      cursor: pointer;
-      width: 20%;
-      padding-left: 15px;
-      padding-right: 15px;
-      margin-bottom: 20px;
-
-      .card-img-top {
-        border: none;
-        border-radius: 0;
-      }
-
-      .card-body {
-        color: $c-purple;
-        padding: 15px 0;
-
-        .card-title {
-          font-size: $f-lg;
-          margin-bottom: 5px;
-        }
-
-        .card-text {
-          font-size: $f-sm;
-          color: $c-basic;
-          font-weight: 600;
         }
       }
     }
@@ -179,7 +346,119 @@
       width: 100%;
       display: block;
       // border-radius: 15px;
-      box-shadow: 0 15px 30px -15px rgba(0,0,0,0.5);
+      box-shadow: 0 20px 25px -10px rgba(0,0,0,0.5);
+    }
+  }
+}
+.controls{
+  position: fixed;
+  width: 100%;
+  background: #f2f2f2;
+  bottom: 0;
+  left: 0;
+  font-size: $f-sm;
+  height: 40px;
+  border-top: 1px solid #ccc;
+  font-size: 11px;
+  .controls-content{
+    margin: auto;
+  }
+  .controls-menu{
+    span{
+      padding-right: 30px;
+      vertical-align: middle;
+      &:last-child{
+        padding-right: 0;
+      }
+    }
+    .hidden{
+      display: none;
+    }
+  }
+  .timeline{
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+    span{
+      font-size: 11px;
+      position: absolute;
+      &#current-time{
+        left: 0;
+        top: -9px;
+      }
+      &#total-time{
+        right: 0;
+        top: -9px;
+      }
+    }
+    .slider{
+      background: #ccc;
+      cursor: pointer;
+      height: 1px;
+      position: relative;
+      width: 95%;
+      margin: 0 auto;
+      .progress{
+        background: #f50;
+        height: 100%;
+        pointer-events: none;
+        position: absolute;
+        width: 0;
+        z-index: 1000;
+      }
+      &:hover{
+        .pin{
+          background: #fff;
+          height: 10px;
+          border-radius: 8px;
+          pointer-events: all;
+          position: absolute;
+          z-index: 1001;
+          right: -5px;
+          top: -3px;
+          width: 8px;
+          box-shadow: (0px 1px 1px 0px rgba(0,0,0,0.32));
+          transition: transform 0.25s ease;
+        }
+      }
+    }
+  }
+  .w-95{
+    width: 95%;
+  }
+  .mt-15px{
+    margin-top: 15px !important;
+  }
+  .track-info{
+    margin-top: -16px;
+    cursor: pointer;
+    font-weight: 100;
+    img{
+      width: 30px;
+      height: 30px;
+      margin: auto;
+      margin-top: 5px;
+      margin-left: 0;
+      margin-right: 5px;
+      box-shadow: rgba(0,0,0,.1)0 0 0 1px inset
+    }
+    span{
+      vertical-align: top;
+      font-size: 11px;
+      color: #999;
+      line-height: 16px;
+      margin-top: 2px;
+      &:hover{
+        color: #000;
+      }
+    }
+    .track-info-r{
+      padding: 2px;
+      h6{
+        font-weight: 100;
+        color: #000;
+        font-size: 11px;
+      }
     }
   }
 }

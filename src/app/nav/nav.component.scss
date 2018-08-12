@@ -3,8 +3,6 @@
 .nav{
   width: 100%;
   background: $c-default;
-  display: block;
-  height: 100%;
   .user-panel{
     padding: 15px 0;
     border-bottom: 1px solid #ebe9e8;
@@ -38,6 +36,7 @@
   }
   .nav-panel{
     overflow-x: auto;
+    width: 100%;
   }
   .card{
     @extend %no-3b;

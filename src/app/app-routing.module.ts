@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AlbumComponent } from './home/album/album.component';
 import { AddComponent } from './home/album/add/add.component';
+import { EditComponent } from './home/album/edit/edit.component';
 import { SongsComponent } from './home/songs/songs.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { ArtistsComponent } from './home/artists/artists.component';
@@ -10,7 +11,8 @@ import { UserComponent } from './home/user/user.component';
 const appRoute : Routes = [
 	{path: '', component: DashboardComponent},
 	{path: 'albums', component: AlbumComponent},
-	{path: 'albums/create', component: AddComponent},
+	{path: 'album/create', component: AddComponent},
+	{path: 'album/update/:id', component: EditComponent},
 	{path: 'songs', component: SongsComponent},
 	{path: 'artists', component: ArtistsComponent},
 	{path: 'user', component: UserComponent},

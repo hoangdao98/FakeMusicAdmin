@@ -3,7 +3,6 @@
 .nav-flex{
   width: 260px;
   background: $c-default;
-  display: block;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -11,7 +10,6 @@
 
 .home-flex{
   width: calc(100% - 260px);
-  height: 100vh;
   box-shadow: -10px 0 90px -30px $c-purulight;
   position: relative;
   z-index: 99;

@@ -1,7 +1,10 @@
 export class Album {
-	id: Number;
-	name: String;
+	id: number;
+	name: string;
+	singer: string;
+	description: string;
 	year: Date;
-	description: String;
-	user_id: Number = -1;
+	image: any;
+	user_id: number = 2;
+	newImage?:any;
 }

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // add this
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // add this
 import { HttpClientModule } from '@angular/common/http';
 
 import { AlbumService } from './album.service';
@@ -39,7 +39,8 @@ import { UserComponent } from './home/user/user.component';
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    OwlModule
+    OwlModule,
+    ReactiveFormsModule
   ],
   providers: [AlbumService, UserService],
   bootstrap: [AppComponent]

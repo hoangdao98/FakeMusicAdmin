@@ -11,12 +11,14 @@ export class UserComponent implements OnInit {
 
   users: Users[];
 
-  constructor(private userService: UserService) { }
-
-  ngOnInit() {
+  constructor(private userService: UserService) {
     this.userService.getAccessToken().subscribe(data => {
       this.getUsers(data.access_token)
     });
+  }
+
+  ngOnInit() {
+
   }
 
   getUsers(accessToken: string) {

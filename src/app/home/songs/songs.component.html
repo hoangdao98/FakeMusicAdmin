@@ -1,70 +1,180 @@
+<div class="pb-4 songs-controls d-flex">
+<!--     <input type="text" class="col-3" placeholder="Search ..." (input)="getsongsearch($event)" [value]="input"> -->
+<!--     <div class="btn-position">
+      <button class="btn active" routerLink="/song/create"><span>Create</span></button>
+      <button class="btn" *ngIf="selectedSong">Update</button>
+      <button class="btn" *ngIf="selectedSong"
+              (click)="delete(selectedSong.id)"
+      >Delete</button>
+    </div> -->
+</div>
 <div class="row">
   <div class="songs col-8">
       <div class="songs-header">
-        <div class="btn-position">
-          <button class="btn active"><span>Create</span></button>
-          <button class="btn">Update</button>
-          <button class="btn">Delete</button>
-        </div>
       </div>
-
-      <div class="songs-body mt-5">
+      <div class="songs-body">
         <table class="table">
           <thead>
             <tr>
               <td>#</td>
-              <td>Album / Artist</td>
+              <td>Tracks / Artist</td>
               <td></td>
               <td></td>
               <td>Plays (This week / All time)</td>
             </tr>
           </thead>
           <tbody>
-            <!-- <tr class="active">
-              <td>1</td>
-              <td><h6>asd</h6><span>asdas</span></td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td><i class="fas fa-heart"></i></td>
-            </tr> -->
-            <tr *ngFor="let album of buffer">
-              <td><span>{{album.id}} <img src="../../../assets/img/PH04904.jpg" alt=""></span></td>
+            <div *ngIf="__tracks.length <= 0" class="load">
+              <img src="../../../assets/img/loader.gif" alt="" class="position-absolute">
+            </div>
+            <tr *ngFor="let track of __tracks"
+                [class.selected]="track === __currentTrack"
+                (click)="__setTrack(track)"
+            >
+              <td><span>{{track.id}} <img src="../../../assets/img/PH04904.jpg" alt=""></span></td>
               <td>
-                <h6>{{album.name}}asdasdasdsadsa</h6><span>{{album.singer}}</span></td>
+                <h6>{{track.name}}</h6><span>{{track.singer}}</span></td>
                 <td></td>
                 <td></td>
-              <td>5M</td>
+              <td>
+                <span><strong>5.72M</strong> / 37.9M</span>
+                <div class="table-btn">
+                  <button><i class="fas fa-heart"></i></button>
+                  <button><i class="fas fa-retweet"></i></button>
+                  <button><i class="fas fa-share-square"></i></button>
+                  <button><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+              </td>
             </tr>
-            <!-- <i class="fas fa-heart"></i> -->
-            <!-- <tr class="active">
-              <td>1</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td><i class="fas fa-heart"></i></td>
-            </tr> -->
           </tbody>
         </table>
       </div>
-
-      <!-- <div class="album-body mt-5">
-        <div class="row">
-          <div class="card" *ngFor="let album of buffer">
-            <img src="../../../assets/img/PH04904.jpg" alt="" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">{{album.name}}</h5>
-              <p class="card-text">{{album.singer}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     </div>
 
-    <div class="col-4 songs">
+    <div class="col-4 song-detail">
+      <div class="song-detail-header">
+      </div>
+      <div class="song-detail-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>song / ---</td>
+            </tr>
+          </thead>
+          <tbody *ngIf="__currentTrack">
+            <tr><td></td></tr>
+            <tr>
+              <td colspan="2"><img src="../../../assets/img/PH04904.jpg" alt=""></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr>
+              <td colspan="2">
+                <span>{{__currentTrack.singer}}</span>
+                <h6>{{__currentTrack.name}}</h6>
+              </td>
+            </tr>
+            <tr>
+              <td>Description: </td>
+              <td>{{__currentTrack.description}}</td>
+            </tr>
+            <tr>
+              <td>Year: </td>
+              <td>{{__currentTrack.year}}</td>
+            </tr>
+            <tr>
+              <td>Liked: </td>
+              <td>33320</td>
+            </tr>
+            <tr>
+              <td>Download: </td>
+              <td>16545</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 </div>
 
-<audio src="../../../assets/tracks/cetena.mp3" controls></audio>
+
+<!-- <div class="controls" *ngIf="selectedSong">
+  <audio src="{{selectedSong.link}}" crossorigin id="track"></audio>
+  <div class=" d-flex w-95 m-auto">
+      <div class="controls-menu col-2 m-auto">
+        <span id="previous-btn"><i class="fas fa-step-backward"></i></span>
+        <span id="play-btn">
+          <i class="fas fa-play" id="iconPlay" aria-hidden="true"></i>
+          <i class="fas fa-pause hidden" id="iconPause" aria-hidden="true"></i>
+        </span>
+        <span id="next-btn"><i class="fas fa-step-forward" aria-hidden="true"></i></span>
+        <span><i class="fas fa-random" aria-hidden="true"></i></span>
+        <span><i class="fas fa-retweet" aria-hidden="true"></i></span>
+      </div>
+      <div class="timeline col-6 d-flex m-auto">
+        <span id="current-time">--:--</span>
+        <div class="slider" data-drirection="horizontal">
+          <div class="progress">
+            <div class="pin" id="progress-pin" data-method="rewind"></div>
+          </div>
+        </div>
+        <span id="total-time">--:--</span>
+      </div>
+      <div class="track-info col-2 d-flex px-0 m-auto">
+        <img src="../../../assets/img/PH04904.jpg" alt="">
+        <div class="track-info-r">
+          <span>{{selectedSong.singer}}</span>
+          <h6>{{selectedSong.name}}</h6>
+        </div>
+      </div>
+      <div class="sub-controls col-1 m-auto">
+        <i class="fas fa-heart" id="heart-icon" aria-hidden="true"></i>
+      </div>
+  </div>
+</div> -->
+<!-- <audio src="" controls></audio> -->
+<!-- 
+<span *ngIf ="__currentTrack">Playing: {{__currentTrack.name}}</span>
+<span *ngIf ="__currentTrack">{{__currentTrack.id +1}}</span>
+
+<li *ngFor="let track of __tracks"
+>
+  <a [class.selected]= "track === __currentTrack"
+  (click)="__setTrack(track)"
+  >{{track.name}}</a>
+
+</li> -->
+
+<div class="controls" *ngIf="__currentTrack">
+  <audio src="{{__currentTrack.link}}" crossorigin id="track"></audio>
+  <div class=" d-flex w-95 m-auto">
+      <div class="controls-menu col-2 m-auto">
+        <span id="previous-btn"><i (click)="__previousTrack()" class="fas fa-step-backward"></i></span>
+        <span id="play-btn">
+          <i class="fas fa-play" id="iconPlay" aria-hidden="true" (click)="__playTrack()" *ngIf="!__playing"></i>
+          <i class="fas fa-pause" (click)="__pauseTrack()" id="iconPause" aria-hidden="true" *ngIf="__playing"></i>
+        </span>
+        <span id="next-btn"><i class="fas fa-step-forward" aria-hidden="true " (click)="__nextTrack()"></i></span>
+        <span><i class="fas fa-random" aria-hidden="true"></i></span>
+        <span><i class="fas fa-retweet" aria-hidden="true"></i></span>
+      </div>
+      <div class="timeline col-6 d-flex m-auto">
+        <span id="current-time">--:--</span>
+        <div class="slider" data-drirection="horizontal">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 70%"></div>
+          </div>
+        </div>
+        <span id="total-time">{{__duration}}</span>
+      </div>
+      <div class="track-info col-2 d-flex px-0 m-auto">
+        <img src="../../../assets/img/PH04904.jpg" alt="">
+        <div class="track-info-r">
+          <span>{{__currentTrack.singer}}</span>
+          <h6>{{__currentTrack.name}}</h6>
+        </div>
+      </div>
+      <div class="sub-controls col-1 m-auto">
+        <i class="fas fa-heart" id="heart-icon" aria-hidden="true"></i>
+      </div>
+  </div>

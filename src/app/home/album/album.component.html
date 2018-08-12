@@ -1,25 +1,32 @@
+<div class="pb-4 album-controls d-flex">
+    <input type="text" class="col-3" placeholder="Search ..." (input)="getalbumsearch($event)" [value]="input">
+    <div class="btn-position">
+      <button class="btn active" routerLink="/album/create"><span>Create</span></button>
+      <button class="btn" *ngIf="selectedAlbum" routerLink="/album/update/{{selectedAlbum.id}}">Update</button>
+      <button class="btn" *ngIf="selectedAlbum"
+              (click)="delete(selectedAlbum.id)"
+      >Delete</button>
+    </div>
+</div>
 <div class="row">
   <div class="albums col-8">
       <div class="albums-header">
-        <div class="btn-position">
-          <button class="btn active"><span>Create</span></button>
-          <button class="btn">Update</button>
-          <button class="btn">Delete</button>
-        </div>
       </div>
-
-      <div class="albums-body mt-5">
+      <div class="albums-body">
         <table class="table">
           <thead>
             <tr>
               <td>#</td>
-              <td>Album / Artist</td>
+              <td>album / Artist</td>
               <td></td>
               <td></td>
               <td>Plays (This week / All time)</td>
             </tr>
           </thead>
           <tbody>
+            <div *ngIf="buffer.length <= 0" class="load">
+              <img src="../../../assets/img/loader.gif" alt="" class="position-absolute">
+            </div>
             <!-- <tr class="active">
               <td>1</td>
               <td><h6>asd</h6><span>asdas</span></td>
@@ -28,41 +35,73 @@
               <td>test</td>
               <td><i class="fas fa-heart"></i></td>
             </tr> -->
-            <tr *ngFor="let album of buffer">
-              <td><span>{{album.id}} <img src="../../../assets/img/PH04904.jpg" alt=""></span></td>
+            <tr *ngFor="let album of buffer"
+                [class.selected]="album === selectedAlbum"
+                (click)="onSelect(album)"
+                attr.data.name = "album.name"
+            >
+              <td><span>{{album.id}} <img src="{{ album.image }}" alt=""></span></td>
               <td>
-                <h6>{{album.name}}asdasdasdsadsa</h6><span>{{album.singer}}</span></td>
+                <h6>{{album.name}}</h6><span>{{album.singer}}</span></td>
                 <td></td>
                 <td></td>
-              <td>5M</td>
+              <td>
+                <span><strong>5.72M</strong> / 37.9M</span>
+                <div class="table-btn">
+                  <button><i class="fas fa-heart"></i></button>
+                  <button><i class="fas fa-retweet"></i></button>
+                  <button><i class="fas fa-share-square"></i></button>
+                  <button><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+              </td>
             </tr>
-            <!-- <i class="fas fa-heart"></i> -->
-            <!-- <tr class="active">
-              <td>1</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td>test</td>
-              <td><i class="fas fa-heart"></i></td>
-            </tr> -->
           </tbody>
         </table>
       </div>
-
-      <!-- <div class="album-body mt-5">
-        <div class="row">
-          <div class="card" *ngFor="let album of buffer">
-            <img src="../../../assets/img/PH04904.jpg" alt="" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title">{{album.name}}</h5>
-              <p class="card-text">{{album.singer}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     </div>
 
-    <div class="col-4 albums">
+    <div class="col-4 album-detail">
+      <div class="album-detail-header">
+      </div>
+      <div class="album-detail-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>#</td>
+              <td>album / ---</td>
+            </tr>
+          </thead>
+          <tbody *ngIf="selectedAlbum">
+            <tr><td></td></tr>
+            <tr>
+              <td colspan="2"><img src="../../../assets/img/PH04904.jpg" alt=""></td>
+            </tr>
+            <tr><td></td></tr>
+            <tr><td></td></tr>
+            <tr>
+              <td colspan="2">
+                <span>{{selectedAlbum.singer}}</span>
+                <h6>{{selectedAlbum.name}}</h6>
+              </td>
+            </tr>
+            <tr>
+              <td>Description: </td>
+              <td>{{selectedAlbum.description}}</td>
+            </tr>
+            <tr>
+              <td>Year: </td>
+              <td>{{selectedAlbum.year}}</td>
+            </tr>
+            <tr>
+              <td>Liked: </td>
+              <td>33320</td>
+            </tr>
+            <tr>
+              <td>Download: </td>
+              <td>16545</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 </div>

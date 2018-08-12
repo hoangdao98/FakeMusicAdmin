@@ -1,3 +1,13 @@
-<p>
-  edit works!
-</p>
+<form action="" class="form-group form" *ngIf="album">
+  <label for="albumName">Name</label> <input type="text" [(ngModel)]="album.name" name="name" class="form-control">
+  <label for="singer">Singer</label> <input type="text"  [(ngModel)]="album.singer" #singer class="form-control" name="singer">
+  <label for="desciption">desciption</label> <input type="text" [(ngModel)]="album.description" #description class="form-control" name= "description">
+  <label for="year">year</label> <input type="year" #year [(ngModel)]="album.year" class="form-control" name="year">
+     <label for="" class="btn btn-default">
+      Upload Images
+      <input type="file" #image accept="image/*" name="image" (change)="handleInputChange($event)">
+    </label>
+  <button (click)="save()"
+          >Submit</button>
+  <button (click)="goBack()">Back</button>
+</form>

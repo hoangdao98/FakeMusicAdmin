@@ -1,6 +1,13 @@
-<form action="" class="form-group">
-  <label for="name">Name</label> <input type="text" id="name" class="form-control">
-  <label for="desciption">desciption</label> <input type="text" id="desciption" class="form-control">
-  <label for="year">year</label> <input type="text" id="year" class="form-control">
-  <button type="submit">Submit</button>
+<form action="" class="form-group text-center" enctype="multipart/form-data">
+  <label for="albumName">Name</label> <input #name type="text" class="form-control">
+  <label for="singer">Singer</label> <input type="text" #singer class="form-control">
+  <label for="desciption">desciption</label> <input type="text" #description class="form-control">
+  <label for="year">year</label> <input type="date" #year class="form-control">
+     <label for="" class="btn btn-default">
+      Upload Images
+      <input type="file" (change)="handleInputChange($event)" #image accept="image/*" name="image">
+    </label>
+  <button (click)="add(name.value, singer.value, description.value, year.value);
+          name.value=''; singer.value; description.value=''; year.value=''; image.value=''" 
+          >Submit</button>
 </form>
