@@ -13,19 +13,19 @@ export class AlbumService {
   private albums = [];
   private newAlbum = {};
   private tracks;
-  private oAuthURL = "http://localhost:8000/oauth/token";
-  private apiURL = "http://localhost:8000/api/albums";
+  private oAuthURL = 'http://localhost:8000/oauth/token';
+  private apiURL = 'http://localhost:8000/api/albums';
   private accessToken;
   private headers = new HttpHeaders();
   private options = { headers: this.headers };
 
   private postData = {
-    grant_type: "password",
+    grant_type: 'password',
     client_id: 2,
-    client_secret: "ttn21RPJpFmcqTOR8KtTtdTjj1fXiib3QBuwKWUH",
-    username: "hreichel@example.net",
-    password: "secret"
-  }
+    client_secret: 'ttn21RPJpFmcqTOR8KtTtdTjj1fXiib3QBuwKWUH',
+    username: 'hreichel@example.net',
+    password: 'secret'
+  };
 
   constructor(
     private http: HttpClient) {
@@ -35,8 +35,8 @@ export class AlbumService {
   }
 
   getAlbums(page): Observable<Album> {
-    return this.http.get<Album>(this.apiURL + "/?page=" + page, this.options).pipe(
-      tap((res: any) => { console.log(res.data) }),
+    return this.http.get<Album>(this.apiURL + '/?page=' + page, this.options).pipe(
+      tap((res: any) => { console.log(res.data); }),
       catchError(error => of([]))
     );
   }
@@ -45,14 +45,14 @@ export class AlbumService {
     return this.http.post<any>(this.oAuthURL, this.postData, this.options).pipe(
       map(token => token.access_token),
       catchError(error => of([]))
-    ).subscribe((data:any) => {
-      localStorage.setItem("token", data);
+    ).subscribe((data: any) => {
+      localStorage.setItem('token', data);
     });
   }
 
   setToken() {
-    let token = localStorage.token;
-    let headers = new HttpHeaders()
+    const token = localStorage.token;
+    const headers = new HttpHeaders()
                   .set('Accept', 'application/json')
                   .set('Content-Type', 'application/json')
                   .set('Authorization', 'Bearer ' + token);
@@ -72,12 +72,12 @@ export class AlbumService {
   addAlbum(album: Album): Observable<Album> {
     return this.http.post<Album>(this.apiURL, album, this.options)
       .pipe(
-        tap((album: Album) => console.log(`inserted album = ${JSON.stringify(album)}`)),
+        tap((res: Album) => console.log(`inserted album = ${JSON.stringify(res)}`)),
         catchError(error => of(new Album()))
       );
   }
 
-  deleteAlbum(albumId: number): Observable<Album>{
+  deleteAlbum(albumId: number): Observable<Album> {
      const url = `${this.apiURL}/${albumId}`;
      console.log(url);
      return this.http.delete<Album>(url, this.options).pipe(
@@ -86,10 +86,10 @@ export class AlbumService {
       );
   }
 
-  updateAlbum(album: Album): Observable<Album>{
+  updateAlbum(album: Album): Observable<Album> {
     return this.http.put<Album>(`${this.apiURL}/${album.id}`, album, this.options)
     .pipe(
-        tap(album => console.log(`inserted album = ${JSON.stringify(album)}`)),
+        tap(res => console.log(`inserted album = ${JSON.stringify(res)}`)),
         catchError(error => of(new Album()))
      );
   }

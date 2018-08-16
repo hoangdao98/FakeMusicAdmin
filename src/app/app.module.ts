@@ -20,6 +20,7 @@ import { ArtistsComponent } from './home/artists/artists.component';
 // Import your library
 import { OwlModule } from 'ngx-owl-carousel';
 import { UserComponent } from './home/user/user.component';
+import { LoginComponent } from './login/login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { UserComponent } from './home/user/user.component';
     SongsComponent,
     ArtistsComponent,
     UserComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -15,7 +15,6 @@ setTimeout(()=>{
  totalTime.innerHTML = minutes + ':' + seconds
 }, 3000)﻿;
 
-
 playButton.addEventListener('click', PlayorPause, true);
 
 function PlayorPause(){

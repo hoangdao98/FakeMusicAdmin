@@ -1,5 +1,5 @@
 <div class="pb-4 album-controls d-flex">
-    <input type="text" class="col-3" placeholder="Search ..." (input)="getalbumsearch($event)" [value]="input">
+    <!-- <input type="text" class="col-3" placeholder="Search ..." (input)="getAlbumSearch($event)" [value]="input"> -->
     <div class="btn-position">
       <button class="btn active" routerLink="/album/create"><span>Create</span></button>
       <button class="btn" *ngIf="selectedAlbum" routerLink="/album/update/{{selectedAlbum.id}}">Update</button>

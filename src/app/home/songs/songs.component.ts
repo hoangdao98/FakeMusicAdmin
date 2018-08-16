@@ -22,6 +22,10 @@ export class SongsComponent implements OnInit {
   private __currentTrack: Song;
   private __trackIndex = 0;
   private __duration: string;
+  private __step;
+  private __update: any;
+  private __barSize: any;
+  private __barValue: any;
 
 
   constructor(private router: ActivatedRoute, private audioService: AudioService) { }
@@ -29,27 +33,34 @@ export class SongsComponent implements OnInit {
   loading() {
     this.load = true;
     this.p++;
-    this.audioService.getAudios(this.p).subscribe((data:any) => {
+    this.audioService.getAudios(this.p).subscribe((data: any) => {
       this.load = false;
-      this.__tracks = this.__tracks.concat(data.data)
+      this.__tracks = this.__tracks.concat(data.data);
     });
   }
 
+  // tslint:disable-next-line:member-ordering
   selectedSong: Song;
   onSelect(song: Song): void {
     this.selectedSong = song;
-    console.log(song); 
+    console.log(song);
   }
 
   __playTrack() {
     this.__audio.play();
     this.__playing = true;
-    this.__setTime();
+    setTimeout(() => {
+      this.__setTime();
+    }, 100);
+    this.__update = setInterval(() => {
+      this.__setUpdate();
+    }, 500);
   }
 
   __pauseTrack() {
     this.__audio.pause();
     this.__playing = false;
+    clearInterval(this.__update);
   }
 
   __stopTrack() {
@@ -73,7 +84,7 @@ export class SongsComponent implements OnInit {
   __previousTrack() {
     this.__stopTrack();
     this.__trackIndex--;
-    if(this.__trackIndex < 0) {
+    if (this.__trackIndex < 0) {
       this.__trackIndex = this.__tracks.length - 1;
     }
     this.__currentTrack = this.__tracks[this.__trackIndex];
@@ -82,13 +93,14 @@ export class SongsComponent implements OnInit {
     this.__playTrack();
   }
 
-  __setTrack(track: Song){
+  __setTrack(track: Song) {
     this.__stopTrack();
     this.__trackIndex = track.id;
     console.log(this.__trackIndex);
     this.__currentTrack = this.__tracks[track.id - 1];
     this.__audio.src = this.__currentTrack.link;
     this.__audio.load();
+    // tslint:disable-next-line:no-unused-expression
     this.__playTrack;
   }
 
@@ -100,21 +112,35 @@ export class SongsComponent implements OnInit {
   }
 
   __setTime() {
-    var minutes = Math.floor(this.__audio.duration/60);
-    var seconds = Math.floor(this.__audio.duration % 60);
-    this.__duration = minutes + ':' + seconds;
+      const totalTime = document.getElementById('total-time');
+      const minutes = Math.floor(this.__audio.duration / 60);
+      const seconds = Math.floor(this.__audio.duration % 60);
+      totalTime.innerHTML = minutes + ':' + seconds;
+  }
+
+  __setUpdate() {
+      const currentTime = document.getElementById('current-time');
+      const playerMinutes = Math.floor(this.__audio.currentTime / 60);
+      const playerSeconds = Math.floor(this.__audio.currentTime % 60);
+      currentTime.innerHTML = playerMinutes + ':' + playerSeconds;
+
+      // const sizeBar = Math.floor(this.__audio.currentTime * this.__barSize / this.__audio.duration);
+      // console.log(sizeBar);
+      this.__barValue = this.__audio.currentTime;
+      this.__barSize = Math.floor(this.__audio.currentTime * this.__audio.duration / this.__audio.duration);
+      this.__step = this.__barSize;
   }
 
   ngOnInit() {
-    var self = this;
-    $(window).on("scroll", function() {
-      var scrollHeight = $(document).height();
-      var scrollPosition = $(window).height() + $(window).scrollTop();
-        // console.log(scrollPosition);
-        if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-          self.loading();
-        }
-      });
+    const self = this;
+    $(window).on(' scroll ', function() {
+      const scrollHeight = $(document).height();
+      const scrollPosition = $(window).height() + $(window).scrollTop();
+      // console.log(scrollPosition);
+      if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
+        self.loading();
+      }
+    });
 
     this.audioService.getAudios(this.p).subscribe((data: any) => {
       this.load = true;
@@ -122,10 +148,10 @@ export class SongsComponent implements OnInit {
     });
 
     this.__audio = new Audio();
-
   }
 
-  ngOnDestroy() {
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnDestroy(): void {
     if (this.__audio) {
       this.__audio.pause();
       this.__audio = null;

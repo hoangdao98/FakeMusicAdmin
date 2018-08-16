@@ -33,11 +33,10 @@ export class AlbumComponent implements OnInit {
     //     this.album = data.data
     //   }
     // );
-    
-    var self = this;
-    $(window).on("scroll", function() {
-      var scrollHeight = $(document).height();
-      var scrollPosition = $(window).height() + $(window).scrollTop();
+    const self = this;
+    $(window).on('scroll', function() {
+      const scrollHeight = $(document).height();
+      const scrollPosition = $(window).height() + $(window).scrollTop();
       // console.log(scrollPosition);
       if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
         self.loading();
@@ -53,37 +52,39 @@ export class AlbumComponent implements OnInit {
   loading() {
     this.load = true;
     this.p++;
-    this.albumService.getAlbums(this.p).subscribe((data:any) => {
+    this.albumService.getAlbums(this.p).subscribe((data: any) => {
       this.load = false;
-      this.buffer = this.buffer.concat(data.data)
+      this.buffer = this.buffer.concat(data.data);
     });
   }
 
+  // tslint:disable-next-line:member-ordering
   selectedAlbum: Album;
   onSelect(album: Album): void {
     this.selectedAlbum = album;
   }
 
-  delete(albumId: number): void{
+  delete(albumId: number): void {
     this.albumService.deleteAlbum(albumId).subscribe(_ => {
        this.buffer = this.buffer.filter(eachAlbum => eachAlbum.id !== albumId);
     });
   }
 
-  getAlbumSearch(event){
-    if (event.target.value == null || event.target.value == '') {
+  getAlbumSearch(event) {
+    if (event.target.value == null || event.target.value === '') {
       this.results = [];
       return;
     }
+    console.log(this.buffer);
     let value = event.target.value;
-    console.log(value);
-    let searchRegex = new RegExp('\\b^' + value, "gi");
-    let matched = this.buffer['name'].filter((data:any) =>
-       data.match(searchRegex));
+    let searchRegex = new RegExp('\\b^' + value, 'gi');
+    let matched = this.buffer.filter((data: any) =>
+       data.name.match(searchRegex));
+    console.log(matched)
   }
 
-  updateAlbum(){
-    
+  updateAlbum() {
+
   }
 
 }
